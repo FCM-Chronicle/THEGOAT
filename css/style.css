@@ -638,3 +638,276 @@ html, body {
     .hud { gap: 8px; padding: 8px 12px; }
     .tab-btn { padding: 10px 12px; font-size: 0.78rem; }
 }
+
+/* ══ v2 추가 스타일 ══════════════════════════════════════════ */
+
+/* 섹션 레이블 */
+.section-label {
+    font-size: 0.72rem;
+    color: var(--text3);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 빈 가이드 */
+.empty-guide {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text2);
+}
+
+/* 시즌 이벤트 카드 */
+.season-event {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* 이적 탭 — 지원 목록 카드 */
+.transfer-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    transition: var(--transition);
+}
+.transfer-card:hover {
+    border-color: var(--accent);
+    background: var(--card-hover);
+}
+.transfer-info {
+    font-size: 0.75rem;
+    color: var(--text3);
+    margin-top: 2px;
+}
+
+/* 오퍼 수락 버튼 */
+.sign-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.sign-btn:hover { filter: brightness(1.12); }
+
+/* 매치 결과 헤더 개선 */
+.match-result-header {
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+.match-result-header.win  { background: linear-gradient(135deg,rgba(16,185,129,.18),rgba(5,150,105,.08)); border:1px solid rgba(16,185,129,.35); }
+.match-result-header.draw { background: linear-gradient(135deg,rgba(245,158,11,.18),rgba(217,119,6,.08)); border:1px solid rgba(245,158,11,.35); }
+.match-result-header.loss { background: linear-gradient(135deg,rgba(239,68,68,.18),rgba(220,38,38,.08)); border:1px solid rgba(239,68,68,.35); }
+
+.match-teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-wrap: wrap;
+}
+.score {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    min-width: 80px;
+    text-align: center;
+}
+.outcome-label { font-size: 1rem; font-weight: 800; margin-top: 8px; }
+.win  .outcome-label { color: var(--green); }
+.draw .outcome-label { color: var(--gold);  }
+.loss .outcome-label { color: var(--red);   }
+
+.player-stats-summary {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+.player-stats-summary div {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* 매치 로그 개선 */
+.match-log {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    overflow-y: auto;
+}
+.match-log-line {
+    padding: 3px 0;
+    font-size: 0.8rem;
+    color: var(--text2);
+    border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.match-log-line:last-child { border-bottom: none; }
+.match-log-line.goal     { color: var(--gold);   font-weight: 700; }
+.match-log-line.assist   { color: var(--accent2); font-weight: 700; }
+.match-log-line.def      { color: var(--green);  font-weight: 700; }
+.match-log-line.teamgoal { color: var(--text);   }
+.match-log-line.concede  { color: var(--red);    }
+.match-log-line.dribble  { color: var(--purple); }
+
+/* HUD 버튼 disabled */
+.btn-action:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none !important;
+    filter: none !important;
+}
+
+/* 내 팀 하이라이트 (리그 테이블) */
+.league-table tr.my-team td {
+    background: rgba(59,130,246,.12);
+    color: var(--accent2);
+}
+.league-table tr.my-team td strong { color: var(--accent2); }
+
+/* 승격 가능 팀 (1, 2위) 표시 */
+.league-table tr.promotion td:first-child::after {
+    content: " 🔼";
+    font-size: 0.65rem;
+}
+
+/* 이적 탭 — 내 시장 정보 그리드 */
+#my-transfer-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+/* 훈련 완료 상태 */
+#btn-training:disabled,
+#btn-training-from-match:disabled {
+    background: var(--bg3) !important;
+    color: var(--text3) !important;
+    border: 1px solid var(--border);
+    opacity: 0.6;
+}
+
+/* 탭 스크롤 (모바일) */
+.main-tabs { overflow-x: auto; scrollbar-width: none; }
+.main-tabs::-webkit-scrollbar { display: none; }
+
+/* 리그 헤더 배지 */
+.league-header {
+    display: flex;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin: 22px 0 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--gold);
+}
+
+/* 선수 카드 hover 효과 강화 */
+.player-card:hover .player-name { color: var(--accent2); }
+
+/* 커리어 그리드 */
+.career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.career-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.career-stat span   { font-size: 0.72rem; color: var(--text2); }
+.career-stat strong { font-size: 1.15rem; color: var(--gold);  }
+
+/* 칭호 뱃지 */
+.title-list  { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.title-badge {
+    background: linear-gradient(135deg,rgba(245,158,11,.18),rgba(217,119,6,.08));
+    border: 1px solid rgba(245,158,11,.4);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 100px;
+}
+
+/* 성향 바 */
+.tendency-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+}
+.tend-label    { width: 100px; font-size: 0.78rem; flex-shrink: 0; }
+.tend-bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,.07); border-radius: 100px; overflow: hidden; }
+.tend-bar      { height: 100%; background: linear-gradient(90deg,var(--purple),#a78bfa); border-radius: 100px; transition: width .4s ease; }
+.tend-val      { width: 28px; text-align: right; font-size: 0.76rem; color: var(--text2); }
+
+/* 팀 그리드 반응형 */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 10px; }
+
+/* 빈 메시지 */
+.empty-msg { color: var(--text3); font-size: 0.88rem; padding: 16px 0; }
+
+/* screen-header */
+.screen-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    background: var(--bg2);
+}
+.screen-header h2 { font-size: 1.25rem; font-weight: 800; }
+
+/* 반응형 */
+@media (max-width: 520px) {
+    .team-grid      { grid-template-columns: 1fr 1fr; }
+    .career-grid    { grid-template-columns: repeat(2, 1fr); }
+    #my-transfer-info { grid-template-columns: 1fr 1fr; }
+    .hud-info       { gap: 10px; }
+    .hud            { gap: 6px; padding: 7px 10px; }
+    .match-teams    { font-size: 0.9rem; gap: 12px; }
+    .score          { font-size: 1.8rem; }
+    #season-mini    { grid-template-columns: repeat(2, 1fr); }
+}
