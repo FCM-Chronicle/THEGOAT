@@ -295,3 +295,237 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+            <label>국적</label>
+            <input type="text" id="custom-country" placeholder="예: 대한민국" value="대한민국">
+        </div>
+        <div class="form-group">
+            <label>나이</label>
+            <input type="number" id="custom-age" min="16" max="40" value="18">
+        </div>
+        <div class="form-group">
+            <label>초기 오버롤 (60 ~ 85)</label>
+            <input type="number" id="custom-rating" min="60" max="85" value="70">
+        </div>
+        <button class="btn-primary" id="btn-create-custom">🚀 커리어 시작!</button>
+        <button class="btn-secondary" onclick="showScreen('screen-player-select')" style="margin-top:6px;">← 뒤로</button>
+    </div>
+</div>
+
+<!-- ══ 화면 5: 메인 게임 ══════════════════════════════════════ -->
+<div class="screen" id="screen-main">
+
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-player">
+            <span class="hud-name" id="hud-name">-</span>
+            <span class="hud-ovr"  id="hud-ovr">OVR -</span>
+            <span class="hud-pos"  id="hud-pos">-</span>
+        </div>
+        <div class="hud-divider"></div>
+        <div class="hud-info">
+            <div class="hud-item"><label>팀</label>   <span id="hud-team">-</span></div>
+            <div class="hud-item"><label>리그</label>  <span id="hud-league">-</span></div>
+            <div class="hud-item"><label>명성</label>  <span id="hud-rep">0</span></div>
+            <div class="hud-item"><label>SP</label>    <span id="hud-sp">0</span></div>
+            <div class="hud-item"><label>날짜</label>  <span id="hud-date">-</span></div>
+            <div class="hud-item"><label>라운드</label><span id="hud-round">-</span></div>
+        </div>
+        <div class="hud-actions">
+            <button class="btn-action"       id="btn-next-round">▶ 다음 경기</button>
+            <button class="btn-action gold"  id="btn-training">🏃 훈련</button>
+            <button class="btn-action gray"  id="btn-save">💾 저장</button>
+        </div>
+    </div>
+
+    <!-- 탭 바 -->
+    <div class="main-tabs">
+        <button class="tab-btn active" data-tab="tab-match">⚽ 경기</button>
+        <button class="tab-btn"        data-tab="tab-stats">📊 스탯/SP</button>
+        <button class="tab-btn"        data-tab="tab-career">🏆 커리어</button>
+        <button class="tab-btn"        data-tab="tab-league">📋 리그</button>
+        <button class="tab-btn"        data-tab="tab-transfer">✈️ 이적</button>
+    </div>
+
+    <!-- 탭 콘텐츠 -->
+    <div class="tab-content">
+
+        <!-- ── 경기 탭 ────────────────────────────────────────── -->
+        <div class="tab-panel active" id="tab-match">
+            <div id="match-result">
+                <div class="empty-guide">
+                    <div style="font-size:2rem;margin-bottom:8px;">⚽</div>
+                    <div style="font-weight:700;margin-bottom:4px;">경기 준비 완료</div>
+                    <div style="color:var(--text3);font-size:0.85rem;">상단 <strong style="color:var(--accent2);">▶ 다음 경기</strong> 버튼을 눌러 시작하세요</div>
+                </div>
+            </div>
+            <div id="match-log" class="match-log" style="display:none;"></div>
+
+            <!-- 이번 시즌 미니 -->
+            <div class="section-label" style="margin-top:24px;">이번 시즌</div>
+            <div id="season-mini" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+                <div class="career-stat"><span>⚽ 득점</span>   <strong id="s-goals">0</strong></div>
+                <div class="career-stat"><span>🅰️ 도움</span>   <strong id="s-assists">0</strong></div>
+                <div class="career-stat"><span>📊 평점</span>   <strong id="s-rating">-</strong></div>
+                <div class="career-stat"><span>🎮 경기수</span> <strong id="s-matches">0</strong></div>
+            </div>
+        </div>
+
+        <!-- ── 스탯/SP 탭 ─────────────────────────────────────── -->
+        <div class="tab-panel" id="tab-stats">
+            <div style="display:flex;gap:24px;flex-wrap:wrap;">
+                <div style="flex:1;min-width:260px;">
+                    <div class="section-label">📊 상세 스탯</div>
+                    <div id="stat-bars"></div>
+                </div>
+                <div style="flex:1;min-width:260px;">
+                    <div class="section-label">💎 SP 투자</div>
+                    <div id="sp-panel"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 커리어 탭 ──────────────────────────────────────── -->
+        <div class="tab-panel" id="tab-career">
+            <div class="section-label">🏆 커리어 기록</div>
+            <div id="career-card"></div>
+
+            <div class="section-label" style="margin-top:20px;">🎭 히든 성향</div>
+            <div id="tendencies"></div>
+
+            <div style="margin-top:16px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;">
+                <div style="font-size:0.72rem;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;">히든 재능</div>
+                <div id="talent-display" style="font-size:1.05rem;font-weight:800;color:var(--gold);">-</div>
+                <div style="font-size:0.73rem;color:var(--text2);margin-top:4px;">재능 수치 = OVR 144 만렙 스탯 가능 개수</div>
+            </div>
+        </div>
+
+        <!-- ── 리그 탭 ────────────────────────────────────────── -->
+        <div class="tab-panel" id="tab-league">
+            <div class="section-label">📋 리그 순위표</div>
+            <div id="league-table"></div>
+        </div>
+
+        <!-- ── 이적 탭 ────────────────────────────────────────── -->
+        <div class="tab-panel" id="tab-transfer">
+            <div id="transfer-window-status" style="font-size:0.9rem;font-weight:700;margin-bottom:16px;"></div>
+
+            <!-- 내 시장 정보 -->
+            <div class="section-label">💰 내 시장 정보</div>
+            <div id="my-transfer-info" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px;"></div>
+
+            <!-- 이적 지원 -->
+            <div class="section-label">✈️ 이적 지원하기
+                <span style="font-size:0.72rem;font-weight:400;color:var(--text3);margin-left:8px;">명성에 따라 접근 가능한 팀이 달라집니다</span>
+            </div>
+            <div id="transfer-target-list"></div>
+        </div>
+
+    </div><!-- /tab-content -->
+</div><!-- /screen-main -->
+
+<!-- ══ 화면 6: 매치 결과 상세 ════════════════════════════════ -->
+<div class="screen" id="screen-match">
+    <div class="screen-header" style="padding:14px 20px;">
+        <button class="btn-secondary" id="btn-back-to-main">← 허브로</button>
+        <h2>⚽ 경기 결과</h2>
+    </div>
+    <div style="padding:0 20px 24px;">
+        <div id="match-result-detail"></div>
+        <div id="match-log-detail" class="match-log" style="margin-top:14px;max-height:280px;display:none;"></div>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn-action" id="btn-confirm-match">✅ 확인하고 계속</button>
+            <button class="btn-action gold" id="btn-training-from-match">🏃 훈련하기</button>
+        </div>
+    </div>
+</div>
+
+<!-- ══ 화면 7: 시즌 종료 ═════════════════════════════════════ -->
+<div class="screen" id="screen-season-end">
+    <div style="padding:24px;max-width:640px;width:100%;margin:0 auto;">
+        <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:4px;">🏁 시즌 종료!</h2>
+        <p style="color:var(--text2);margin-bottom:20px;font-size:0.9rem;">새로운 시즌이 시작됩니다</p>
+
+        <div class="section-label">📋 최종 순위</div>
+        <div id="final-table" style="margin-bottom:20px;"></div>
+
+        <div class="section-label">📰 시즌 이벤트</div>
+        <div id="season-log" style="margin-bottom:24px;display:flex;flex-direction:column;gap:8px;"></div>
+
+        <button class="btn-primary" id="btn-next-season" style="width:100%;">🚀 다음 시즌 시작!</button>
+    </div>
+</div>
+
+<!-- ══ 이벤트 모달 ════════════════════════════════════════════ -->
+<div id="event-modal">
+    <div class="modal-box">
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-desc"  id="modal-desc"></div>
+        <div class="modal-choices" id="modal-choices"></div>
+    </div>
+</div>
+
+<!-- ══ JS 로드 ════════════════════════════════════════════════ -->
+<script src="js/data.js"></script>
+<script src="js/player.js"></script>
+<script src="js/match.js"></script>
+<script src="js/season.js"></script>
+<script src="js/transfer.js"></script>
+<script src="js/cup.js"></script>
+<script src="js/events.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+/* ── 버튼 바인딩 (DOMContentLoaded 이후) ────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 저장 버튼
+    document.getElementById('btn-save')?.addEventListener('click', () => {
+        if (gameState) saveGame(gameState);
+    });
+
+    // 훈련 버튼 (메인)
+    document.getElementById('btn-training')?.addEventListener('click', () => {
+        doTrainingRound();
+        if (gameState) renderStatBars(gameState.player, 'stat-bars');
+    });
+
+    // 매치 화면 → 허브로
+    document.getElementById('btn-back-to-main')?.addEventListener('click', () => {
+        showScreen('screen-main');
+        if (gameState) {
+            updateHUD(gameState);
+            renderSeasonMini();
+        }
+    });
+
+    // 매치 화면 → 확인 (메인으로)
+    document.getElementById('btn-confirm-match')?.addEventListener('click', () => {
+        showScreen('screen-main');
+        if (gameState) {
+            updateHUD(gameState);
+            renderSeasonMini();
+            // 대기 이벤트 있으면 모달 오픈
+            if (gameState.pendingEvent) {
+                showEventModal(gameState.pendingEvent, handleEventChoice);
+            }
+        }
+    });
+
+    // 매치 화면 훈련 버튼
+    document.getElementById('btn-training-from-match')?.addEventListener('click', () => {
+        doTrainingRound();
+    });
+
+    // 다음 시즌 버튼
+    document.getElementById('btn-next-season')?.addEventListener('click', () => {
+        initMainGame();
+        showScreen('screen-main');
+        if (gameState) renderSeasonMini();
+        showToast('🆕 새 시즌 시작!', 'success');
+    });
+});
+</script>
+
+</body>
+</html>
